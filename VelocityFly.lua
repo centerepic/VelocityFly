@@ -18,19 +18,19 @@ VelocityFly.LoopFunction = function()
         for _, KeyObject in pairs(UserInputService:GetKeysPressed()) do
             if KeyObject.KeyCode == Enum.KeyCode.W then
                 MovementInputDetected = true
-                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector.Unit
+                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector.Unit * VelocityFly.Speed
             end
             if KeyObject.KeyCode == Enum.KeyCode.D then
                 MovementInputDetected = true
-                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector:Cross(Vector3.new(0, 1, 0)).Unit
+                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector:Cross(Vector3.new(0, 1, 0)).Unit * VelocityFly.Speed
             end
             if KeyObject.KeyCode == Enum.KeyCode.A then
                 MovementInputDetected = true
-                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector:Cross(Vector3.new(0, -1, 0)).Unit
+                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + Camera.CFrame.LookVector:Cross(Vector3.new(0, -1, 0)).Unit * VelocityFly.Speed
             end
             if KeyObject.KeyCode == Enum.KeyCode.S then
                 MovementInputDetected = true
-                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + (Camera.CFrame.LookVector.Unit * - 1)
+                VelocityFly.TargetCFrame = VelocityFly.TargetCFrame + (Camera.CFrame.LookVector.Unit * - 1) * VelocityFly.Speed
             end
         end
 
@@ -38,7 +38,7 @@ VelocityFly.LoopFunction = function()
             VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 1.3 * (workspace.Gravity / 196.1999969482422), 0)
         end
 
-        LocalPlayer.Character.HumanoidRootPart.Velocity = (VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position) * VelocityFly.Speed
+        LocalPlayer.Character.HumanoidRootPart.Velocity = (VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position)
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.CFrame.p) * Camera.CFrame.Rotation
     end
 end
