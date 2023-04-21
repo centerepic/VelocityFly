@@ -38,7 +38,7 @@ VelocityFly.LoopFunction = function()
             VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, 1.3 * (workspace.Gravity / 196.1999969482422), 0)
         end
 
-        LocalPlayer.Character.HumanoidRootPart.Velocity = VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position
+        LocalPlayer.Character.HumanoidRootPart.Velocity = VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position * VelocityFly.Speed
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.CFrame.p) * Camera.CFrame.Rotation
     end
 end
