@@ -43,12 +43,10 @@ VelocityFly.LoopFunction = function()
         end
 
         if not MovementInputDetected then
-            VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+            VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame + Vector3.new(0, (workspace.Gravity / 196.1999969482422), 0)
         end
 
-        print('vel')
         LocalPlayer.Character.HumanoidRootPart.Velocity = (VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position)
-        print('rot')
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.CFrame.p) * Camera.CFrame.Rotation
     end
 end
