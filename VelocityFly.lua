@@ -43,7 +43,7 @@ VelocityFly.LoopFunction = function()
     end
 end
 
-VelocityFly.Speed = 5
+VelocityFly.Speed = 1
 VelocityFly.Enabled = false
 VelocityFly.TargetCFrame = CFrame.new(0,0,0)
 VelocityFly.HeartbeatConnection = nil
