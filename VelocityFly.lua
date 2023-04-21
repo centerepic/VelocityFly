@@ -11,23 +11,7 @@ function VelocityFly:CFrameToOrientation(cf)
 	return Vector3.new(math.deg(x), math.deg(y), math.deg(z))
 end
 
-VelocityFly.Speed = 5
-VelocityFly.Enabled = false
-VelocityFly.TargetCFrame = CFrame.new(0,0,0)
-VelocityFly.HeartbeatConnection = nil
-
-function VelocityFly:Toggle(State)
-    self.Enabled = State
-    if State == true then
-        VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
-        LocalPlayer.Character.Humanoid.PlatformStand = true
-    else
-        VelocityFly.HeartbeatConnection:Disconnect()
-        LocalPlayer.Character.Humanoid.PlatformStand = false
-    end
-end
-
-VelocityFly.HeartbeatConnection = RunService.Heartbeat:Connect(function()
+VelocityFly.LoopFunction = function()
     if VelocityFly.Enabled == true then
         local MovementInputDetected = false
 
@@ -57,6 +41,25 @@ VelocityFly.HeartbeatConnection = RunService.Heartbeat:Connect(function()
         LocalPlayer.Character.HumanoidRootPart.Velocity = VelocityFly.TargetCFrame.Position - LocalPlayer.Character.HumanoidRootPart.Position
         LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(LocalPlayer.Character.HumanoidRootPart.CFrame.p) * Camera.CFrame.Rotation
     end
-end)
+end
+
+VelocityFly.Speed = 5
+VelocityFly.Enabled = false
+VelocityFly.TargetCFrame = CFrame.new(0,0,0)
+VelocityFly.HeartbeatConnection = nil
+
+function VelocityFly:Toggle(State)
+    self.Enabled = State
+    if State == true then
+        VelocityFly.HeartbeatConnection = RunService.Heartbeat:Connect(VelocityFly.LoopFunction)
+        VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
+        LocalPlayer.Character.Humanoid.PlatformStand = true
+    else
+        if VelocityFly.HeartbeatConnection and VelocityFly.HeartbeatConnection.Connected then
+            VelocityFly.HeartbeatConnection:Disconnect()
+        end
+        LocalPlayer.Character.Humanoid.PlatformStand = false
+    end
+end
 
 return VelocityFly
