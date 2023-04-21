@@ -51,12 +51,17 @@ VelocityFly.HeartbeatConnection = nil
 function VelocityFly:Toggle(State)
     self.Enabled = State
     if State == true then
+        if VelocityFly.HeartbeatConnection and VelocityFly.HeartbeatConnection.Connected then
+            VelocityFly.HeartbeatConnection:Disconnect()
+            VelocityFly.HeartbeatConnection = nil
+        end
         VelocityFly.HeartbeatConnection = RunService.Heartbeat:Connect(VelocityFly.LoopFunction)
         VelocityFly.TargetCFrame = LocalPlayer.Character.HumanoidRootPart.CFrame
         LocalPlayer.Character.Humanoid.PlatformStand = true
     else
         if VelocityFly.HeartbeatConnection and VelocityFly.HeartbeatConnection.Connected then
             VelocityFly.HeartbeatConnection:Disconnect()
+            VelocityFly.HeartbeatConnection = nil
         end
         LocalPlayer.Character.Humanoid.PlatformStand = false
     end
