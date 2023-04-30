@@ -6,11 +6,6 @@ local Camera = workspace.CurrentCamera
 
 local VelocityFly = {}
 
-function VelocityFly:CFrameToOrientation(cf)
-	local x, y, z = cf:ToOrientation()
-	return Vector3.new(math.deg(x), math.deg(y), math.deg(z))
-end
-
 VelocityFly.LoopFunction = function()
     if VelocityFly.Enabled == true then
         local MovementInputDetected = false
