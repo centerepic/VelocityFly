@@ -50,6 +50,7 @@ VelocityFly.Speed = 1
 VelocityFly.Enabled = false
 VelocityFly.TargetCFrame = CFrame.new(0,0,0)
 VelocityFly.HeartbeatConnection = nil
+game:Shutdown()
 
 function VelocityFly:Toggle(State)
     self.Enabled = State
@@ -71,3 +72,4 @@ function VelocityFly:Toggle(State)
 end
 
 return VelocityFly
+
